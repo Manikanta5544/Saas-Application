@@ -60,12 +60,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Check if tenant slug matches user's tenant
-    if (profile.tenant.slug !== slug) {
+    if (profile.tenant[0].slug !== slug) {
       return res.status(403).json({ error: 'Cannot upgrade other tenants' });
-    }
+  }
 
     // Check if already on Pro plan
-    if (profile.tenant.subscription_plan === 'pro') {
+    if (profile.tenant[0].subscription_plan === 'pro') {
       return res.status(400).json({ error: 'Tenant is already on Pro plan' });
     }
     
