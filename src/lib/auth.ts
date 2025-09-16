@@ -1,4 +1,5 @@
 import { supabase, type User, type UserProfile, type Tenant } from './supabase';
+export { type User, type UserProfile, type Tenant };
 
 export class AuthService {
   /** Sign in user with email + password */
