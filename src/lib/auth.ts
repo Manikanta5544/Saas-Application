@@ -77,13 +77,18 @@ export class AuthService {
 
     for (const { email, password } of testUsers) {
       try {
-        const { error } = await supabase.auth.signUp({ email, password });
+        const { data, error } = await supabase.auth.signUp({ email, password });
+        
         if (error && !error.message.includes('already registered')) {
-          console.error(`Error creating ${email}:`, error.message);
+          console.error(`Supabase API Error creating ${email}:`, error.message);
+        } else if (!data) {
+          console.warn(`Signup for ${email} returned no data. Check for silent security policies or email provider issues.`);
+        } else {
+          console.log(`Successfully created or found user: ${email}`);
         }
       } catch (err) {
         console.error(`Failed to create ${email}:`, err);
       }
     }
-  }
+  }  
 }
