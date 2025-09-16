@@ -9,10 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "engines": {
-    "node": "18.x"
-  },
-
   "overrides": {
     "esbuild": "^0.23.1",
     "path-to-regexp": "^6.2.3",
